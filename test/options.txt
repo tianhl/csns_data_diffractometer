@@ -1,0 +1,2 @@
+samplefile  = /home/tianhl/workarea/Data/CSNS_DIFF_SIM/data_0904/sample_left.dat
+mappingfile = /home/tianhl/workarea/Data/CSNS_DIFF_SIM/data_0904/20140922_map/mapping_left.txt
