@@ -1,0 +1,4 @@
+#include "DataStore.h"
+
+bool DataStore::initialize(){
+}

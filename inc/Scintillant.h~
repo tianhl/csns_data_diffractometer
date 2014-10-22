@@ -15,7 +15,8 @@ class HitMap{
 	public:
 		HitMap(uint32_t tof, uint32_t *x, uint32_t *y) { m_tof = tof; m_x = x; m_y = y; }
 		const uint32_t getTOF() const { return m_tof; }
-		const bool getX(uint32_t id) const{ return bool((m_x[id/32]>>(id%32))&0x1); }
+		//const bool getX(uint32_t id) const{ return bool((m_x[id/32]>>(id%32))&0x1); }
+		const bool getX(uint32_t id) const;
 		const bool getY(uint32_t id) const{ return bool((m_y[id/32]>>(id%32))&0x1); }
 		void setX(uint32_t id, bool bv){ bv?(m_x[id/32]|=(1<<(id%32))):(m_x[id/32]&=(~(1<<(id%32)))); }
 		void setY(uint32_t id, bool bv){ bv?(m_y[id/32]|=(1<<(id%32))):(m_y[id/32]&=(~(1<<(id%32)))); }

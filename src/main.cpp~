@@ -72,6 +72,20 @@ int main(int argc, char *argv[]) {
 	}
 
         
+	datastore->mkdir("tmp");
+	objs= datastore->list();
+	for(it = objs.begin(); it != objs.end(); it++){
+		std::cout << "list: " << *it << std::endl;
+	}
+
+	DataStorePtr tmp(datastore->cd("tmp"));
+	DataStorePtr err(datastore->cd("err"));
+	std::cout << "err datastore: "  << err << std::endl;
+	std::cout << "tmp datastore: "  << tmp << std::endl;
+	std::cout << "datastore: "  << datastore->find("tmp") << std::endl;
+
+
+
 
 
 	Pulse* pulseptr= dynamic_cast<Pulse*>(datastore->find("pulse"));
