@@ -71,7 +71,27 @@ int main(int argc, char *argv[]) {
 		std::cout << "list: " << *it << std::endl;
 	}
 
-        
+        //datastore->mkdir("tmpdir");
+	DataStore* tmp = datastore->mkdir("tmpdir")->mkdir("2ndtmpdir");
+	std::cout << "new 2nd dir:  " << tmp << std::endl;
+	//tmp->regist("evt", evt);
+	std::cout << "new 2nd print: " << std::endl;
+	datastore->printTree();
+
+	//std::cout << "find 2nd dir: " << datastore->find("/tmpdir/2ndtmpdir") << std::endl;
+	//DataStore* ds = new DataStore();
+	//datastore->regist("tmpdir", ds);
+	std::cout << "find tmpdir: " << datastore->find("tmpdir") << std::endl;
+	std::cout << "tmpdir    path: " << dynamic_cast<DataStore*>(datastore->find("tmpdir"))->path() << std::endl;
+	std::cout << "datastore path: " << datastore->path() << std::endl;
+	std::cout << "find tmpdir/2ndtmpdir: " << datastore->find("tmpdir/2ndtmpdir") << std::endl;
+
+	objs= datastore->list();
+	for(it = objs.begin(); it != objs.end(); it++){
+		std::cout << "list: " << *it << std::endl;
+	}
+	datastore->mkdir("tmpdir");
+
 
 
 	Pulse* pulseptr= dynamic_cast<Pulse*>(datastore->find("pulse"));
