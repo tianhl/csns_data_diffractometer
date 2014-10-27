@@ -33,10 +33,15 @@ int main(int argc, char *argv[]) {
 
 
 
-	//PulsePtr pulse(new Pulse);
-	Pulse* pulse = new Pulse;
+	PulsePtr pulse(new Pulse);
+	//Pulse* pulse = new Pulse;
 
 	EventPtr evt(new Event);
+	//Event* evt = new Event;
+	//EventPtr evtptr(evt);
+
+
+
 	evt->setPixelID(2000);
 	evt->setTOF(1000);
         pulse->addEvent(evt);
@@ -72,19 +77,24 @@ int main(int argc, char *argv[]) {
 	}
 
         //datastore->mkdir("tmpdir");
-	DataStore* tmp = datastore->mkdir("tmpdir")->mkdir("2ndtmpdir");
+	DataStorePtr tmp = datastore->mkdir("tmpdir")->mkdir("2ndtmpdir");
 	std::cout << "new 2nd dir:  " << tmp << std::endl;
-	//tmp->regist("evt", evt);
+	tmp->regist("evt", evt);
 	std::cout << "new 2nd print: " << std::endl;
 	datastore->printTree();
+	std::cout << "new 2nd print finish: " << std::endl;
 
 	//std::cout << "find 2nd dir: " << datastore->find("/tmpdir/2ndtmpdir") << std::endl;
 	//DataStore* ds = new DataStore();
 	//datastore->regist("tmpdir", ds);
-	std::cout << "find tmpdir: " << datastore->find("tmpdir") << std::endl;
-	std::cout << "tmpdir    path: " << dynamic_cast<DataStore*>(datastore->find("tmpdir"))->path() << std::endl;
+	std::cout << "find tmpdir: " << datastore->find("tmpdir/2ndtmpdir") << std::endl;
+	std::cout << "tmpdir    path: " << dynamic_cast<DataStore*>(datastore->find("tmpdir").get())->path() << std::endl;
 	std::cout << "datastore path: " << datastore->path() << std::endl;
-	std::cout << "find tmpdir/2ndtmpdir: " << datastore->find("tmpdir/2ndtmpdir") << std::endl;
+	std::cout << "======================================================" << std::endl;
+	std::cout << "find tmpdir/2ndtmpdir: " << datastore->find("/tmpdir/2ndtmpdir") << std::endl;
+	std::cout << "find tmpdir/2ndtmpdir/evt: " 
+		<< dynamic_cast<Event*>(datastore->find("/tmpdir/2ndtmpdir/evt").get())->getPixelID() << std::endl;
+	std::cout << "======================================================" << std::endl;
 
 	objs= datastore->list();
 	for(it = objs.begin(); it != objs.end(); it++){
@@ -94,7 +104,7 @@ int main(int argc, char *argv[]) {
 
 
 
-	Pulse* pulseptr= dynamic_cast<Pulse*>(datastore->find("pulse"));
+	Pulse* pulseptr= dynamic_cast<Pulse*>(datastore->find("pulse").get());
 
 	std::cout << "get data store pixel id: " << pulseptr->getEvent(0)->getPixelID() << std::endl;
 

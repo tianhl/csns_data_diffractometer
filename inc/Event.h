@@ -5,10 +5,11 @@
 #include <stdint.h>
 #include <boost/shared_ptr.hpp>
 #include <vector>
+#include "IDataBlock.h"
 using namespace std;
 
 
-class Event{
+class Event:public IDataBlock{
 	public:
 		const uint64_t getPixelID() const {return m_pixelid; }
 		void setPixelID(uint64_t id) { m_pixelid = id; }
