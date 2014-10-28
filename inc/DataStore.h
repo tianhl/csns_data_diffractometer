@@ -18,6 +18,8 @@ class DataStore:public IDataBlock{
 		DataStore(){m_parent=DataStorePtr();m_root=DataStorePtr(this);m_path="/";}
 		DataStore(DataStorePtr parent, std::string name);
 
+		~DataStore();
+
 		std::string path(){return m_path;}
 		bool regist(std::string name, IDataBlockPtr data){m_map.insert(make_pair(name, data));}
 		IDataBlockPtr find(std::string name);

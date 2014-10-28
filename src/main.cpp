@@ -106,6 +106,6 @@ int main(int argc, char *argv[]) {
 
 	Pulse* pulseptr= dynamic_cast<Pulse*>(datastore->find("pulse").get());
 
-	std::cout << "get data store pixel id: " << pulseptr->getEvent(0)->getPixelID() << std::endl;
+	std::cout << "get data store pixel id: " /*<< pulseptr->getEvent(0)->getPixelID()*/  << std::endl;
 
 }
